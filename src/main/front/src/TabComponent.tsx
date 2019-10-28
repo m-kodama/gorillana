@@ -1,13 +1,6 @@
 import * as React from 'react';
-import {
-    Tabs, Tab, Grid, Tooltip
-} from '@material-ui/core'
-import {
-    InsertChartTwoTone,
-    SupervisedUserCircleTwoTone,
-    TodayTwoTone,
-    SettingsApplicationsTwoTone,
-} from '@material-ui/icons';
+import { Tabs, Tab, Grid, Tooltip } from '@material-ui/core'
+import { InsertChartTwoTone, SupervisedUserCircleTwoTone, TodayTwoTone, SettingsApplicationsTwoTone } from '@material-ui/icons';
 import StudentManagement from './StudentManagement';
 
 const tooltipEntryDelay = 200;
