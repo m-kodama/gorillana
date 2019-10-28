@@ -10,8 +10,8 @@ const TableComponent: React.FC = () => {
         {
             id: 1,
             studentNumber: "GSB1000",
-            lastName: "ためかわ",
-            firstName: "ゆういち",
+            lastName: "たなか",
+            firstName: "たろう",
             faculityId: 1,
             classId: 3,
             entranceYear: 2009
@@ -19,8 +19,8 @@ const TableComponent: React.FC = () => {
         {
             id: 2,
             studentNumber: "GSB1001",
-            lastName: "おおかわ",
-            firstName: "ゆうじ",
+            lastName: "すずき",
+            firstName: "はなこ",
             faculityId: 1,
             classId: 4,
             entranceYear: 2009
