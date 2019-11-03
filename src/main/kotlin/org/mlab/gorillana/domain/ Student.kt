@@ -7,5 +7,5 @@ data class Student (
   var firstName: String,
   var faculityId: Int,
   var classId: Int,
-  var enteranceYear: String
+  var entranceYear: String
 )
