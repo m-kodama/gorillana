@@ -38,7 +38,7 @@ const InputDialog: React.FC = () => {
                         <FormControl style={{marginBottom:24, width:"100%"}} variant="outlined">
                             <InputLabel variant="outlined">学部</InputLabel>
                                 <Select labelWidth={32} value={faculityId} onChange={handleChangeFaculityId}>
-                                    <MenuItem value="">未選択</MenuItem>
+                                    <MenuItem value={0}>未選択</MenuItem>
                                     <MenuItem value={1}>工学①</MenuItem>
                                     <MenuItem value={2}>理学②</MenuItem>
                                     <MenuItem value={3}>文学⑨</MenuItem>
@@ -47,7 +47,7 @@ const InputDialog: React.FC = () => {
                         <FormControl style={{marginBottom:24, width:"100%"}} variant="outlined">
                             <InputLabel variant="outlined">入学年度</InputLabel>
                                 <Select labelWidth={64} value={entranceYear} onChange={handleChangeEntranceYear}>
-                                    <MenuItem value="">未選択</MenuItem>
+                                    <MenuItem value={0}>未選択</MenuItem>
                                     <MenuItem value={1}>2018</MenuItem>
                                     <MenuItem value={2}>2019</MenuItem>
                                     <MenuItem value={3}>2020</MenuItem>
