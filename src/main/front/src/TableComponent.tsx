@@ -1,10 +1,14 @@
 import * as React from 'react';
+import { useContext } from 'react';
+import { Store } from './store';
+import { ActionType } from './reducer';
 import { Table, TableHead, TableRow, TableCell, TableBody, Button, Paper, Tooltip } from '@material-ui/core';
 import { EditTwoTone, DeleteTwoTone } from '@material-ui/icons';
 import { StudentProperties } from './const';
 import _ from 'lodash';
 
-const TableComponent: React.FC = () => {
+const TableComponent: React.FC<StudentProperties[]> = (props: StudentProperties[]) => {
+    const { state, dispatch } = useContext(Store);
     const headerElements = ["管理ID", "学籍番号", "姓", "名", "学部", "クラス", "入学年度", "", ""];
     const dammyData: StudentProperties[] = [
         {
@@ -42,7 +46,7 @@ const TableComponent: React.FC = () => {
                                     return (
                                         <TableRow>
                                             {_.map(row).map(cell => <TableCell style={{textAlign:"center"}}>{cell}</TableCell>)}
-                                            <Tooltip title="学生を編集する"><TableCell style={{textAlign:"center"}}><Button><EditTwoTone/></Button></TableCell></Tooltip>
+                                            <Tooltip title="学生を編集する"><TableCell style={{textAlign:"center"}}><Button onClick={() => dispatch({type: ActionType.DIALOG_OPEN})}><EditTwoTone/></Button></TableCell></Tooltip>
                                             <Tooltip title="学生を削除する"><TableCell style={{textAlign:"center"}}><Button><DeleteTwoTone/></Button></TableCell></Tooltip>
                                         </TableRow>
                                     )
