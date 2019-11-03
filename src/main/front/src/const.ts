@@ -2,8 +2,8 @@ export type StudentProperties = {
     id: number;
     studentNumber: string;
     lastName: string;
-    firstName: string
+    firstName: string;
     faculityId: number;
     classId: number;
-    entranceYear: number;
+    entranceYear: string;
 };
