@@ -1,11 +1,14 @@
 import React from 'react';
 import TabComponent from './TabComponent';
+import { StoreProvider } from './store';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <TabComponent/>
-    </div>
+    <StoreProvider>
+      <div>
+        <TabComponent/>
+      </div>
+    </StoreProvider>
   );
 }
 
