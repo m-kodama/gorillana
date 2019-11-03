@@ -27,8 +27,8 @@ class StudentController() {
 
   // 1件作成
   @PostMapping("/students")
-  fun createStudentById(@RequestBody Student: Student): List<Student> {
-      return studentService.insertStudent(Student)
+  fun createStudentById(@RequestBody student: Student): List<Student> {
+      return studentService.insertStudent(student)
   }
 
   // 1件編集

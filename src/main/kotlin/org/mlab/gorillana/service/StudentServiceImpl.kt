@@ -20,8 +20,8 @@ class StudentServiceImpl : StudentService {
       return studentRepository.selectStudentById(studentId)
   }
 
-  override fun insertStudent(Student: Student): List<Student> {
-      studentRepository.insertStudentById(Student)
+  override fun insertStudent(student: Student): List<Student> {
+      studentRepository.insertStudentById(student)
       return studentRepository.selectStudents()
   }
 
