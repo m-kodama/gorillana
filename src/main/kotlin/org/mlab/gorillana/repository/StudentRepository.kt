@@ -19,10 +19,10 @@ interface StudentRepository {
     @Select("SELECT * FROM students WHERE student_id = #{studentId}")
     fun selectStudentById(@Param("studentId") studentId: Int?): Student
 
-    @Insert("INSERT INTO students(student_number, last_name, first_name, faculity_id, class_id, enterance_year) values(#{studentNumber}, #{lastName}, #{firstName}, #{faculityId}, #{classId}, #{enteranceYear})")
+    @Insert("INSERT INTO students(student_number, last_name, first_name, faculity_id, class_id, entrance_year) values(#{studentNumber}, #{lastName}, #{firstName}, #{faculityId}, #{classId}, #{enteranceYear})")
     fun insertStudentById(student: Student): Int
 
-    @Update("UPDATE students SET student_number=#{studentNumber}, last_name=#{lastName}, first_name=#{firstName}, faculity_id=#{faculityId}, class_id=#{classId}, enterance_year=#{enteranceYear}, WHERE student_id=#{studentId}")
+    @Update("UPDATE students SET student_number=#{studentNumber}, last_name=#{lastName}, first_name=#{firstName}, faculity_id=#{faculityId}, class_id=#{classId}, entrance_year=#{enteranceYear} WHERE student_id=#{studentId}")
     fun updateStudentById(student: Student): Int
 
     @Delete("DELETE FROM students WHERE student_id=#{studentId}")

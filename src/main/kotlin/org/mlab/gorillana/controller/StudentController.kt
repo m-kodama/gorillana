@@ -28,18 +28,18 @@ class StudentController() {
   // 1件作成
   @PostMapping("/students")
   fun createStudentById(@RequestBody Student: Student): List<Student> {
-      return studentService.getInsertStudent(Student)
+      return studentService.insertStudent(Student)
   }
 
   // 1件編集
   @PutMapping("/students/{id}")
-  fun updateStudentById(@PathVariable("id") studentId: Int, @RequestBody Student: Student): Student {
-      return studentService.getUpdateStudent(studentId, Student)
+  fun updateStudentById(@PathVariable("id") studentId: Int, @RequestBody student: Student): Student {
+      return studentService.updateStudent(studentId, student)
   }
 
   // 1件削除
   @DeleteMapping("/students/{id}")
-  fun deleteStudentById(@PathVariable("id") studentId: Int?): Student {
-      return studentService.getDeleteStudentById(studentId)
+  fun deleteStudentById(@PathVariable("id") studentId: Int?): List<Student> {
+      return studentService.deleteStudentById(studentId)
   }
 }

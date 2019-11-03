@@ -20,18 +20,19 @@ class StudentServiceImpl : StudentService {
       return studentRepository.selectStudentById(studentId)
   }
 
-  override fun getInsertStudent(Student: Student): List<Student> {
+  override fun insertStudent(Student: Student): List<Student> {
       studentRepository.insertStudentById(Student)
       return studentRepository.selectStudents()
   }
 
-  override fun getUpdateStudent(studentId: Int, Student: Student): Student {
-      Student.studentId = studentId
+  override fun updateStudent(studentId: Int, student: Student): Student {
+      student.studentId = studentId
+      studentRepository.updateStudentById(student)
       return studentRepository.selectStudentById(studentId)
   }
 
-  override fun getDeleteStudentById(@Param("studentId") studentId: Int?): Student {
+  override fun deleteStudentById(@Param("studentId") studentId: Int?): List<Student> {
       studentRepository.deleteStudentById(studentId)
-      return studentRepository.selectStudentById(studentId)
+      return studentRepository.selectStudents()
   }
 }

@@ -8,9 +8,9 @@ interface StudentService {
 
   fun getStudentById(studentId: Int?): Student
 
-  fun getInsertStudent(Student: Student): List<Student>
+  fun insertStudent(Student: Student): List<Student>
 
-  fun getUpdateStudent(studentId: Int, Student: Student): Student
+  fun updateStudent(studentId: Int, student: Student): Student
 
-  fun getDeleteStudentById(studentId: Int?): Student
+  fun deleteStudentById(studentId: Int?): List<Student>
 }
