@@ -7,29 +7,15 @@ import { EditTwoTone, DeleteTwoTone } from '@material-ui/icons';
 import { StudentProperties } from './const';
 import _ from 'lodash';
 
-const TableComponent: React.FC<StudentProperties[]> = (props: StudentProperties[]) => {
+type StudentProps = {
+    children: StudentProperties[]
+};
+
+const TableComponent: React.FC<StudentProps> = (props: StudentProps) => {
     const { state, dispatch } = useContext(Store);
     const headerElements = ["管理ID", "学籍番号", "姓", "名", "学部", "クラス", "入学年度", "", ""];
-    const dammyData: StudentProperties[] = [
-        {
-            id: 1,
-            studentNumber: "GSB1000",
-            lastName: "たなか",
-            firstName: "たろう",
-            faculityId: 1,
-            classId: 3,
-            entranceYear: 2009
-        },
-        {
-            id: 2,
-            studentNumber: "GSB1001",
-            lastName: "すずき",
-            firstName: "はなこ",
-            faculityId: 1,
-            classId: 4,
-            entranceYear: 2009
-        }
-    ];
+    
+    const students = props.children;
 
     return (
         
@@ -42,7 +28,7 @@ const TableComponent: React.FC<StudentProperties[]> = (props: StudentProperties[
                     </TableHead>
                     <TableBody>
                             { 
-                                dammyData.map(row => {
+                                students.map(row => {
                                     return (
                                         <TableRow>
                                             {_.map(row).map(cell => <TableCell style={{textAlign:"center"}}>{cell}</TableCell>)}
