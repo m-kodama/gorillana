@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface StudentRepository {
 
-    @Select("SELECT * FROM students;")
+    @Select("SELECT * FROM students ORDER BY student_id ASC;")
     fun selectStudents(): List<Student>
 
     @Select("SELECT * FROM students WHERE student_id = #{studentId}")
