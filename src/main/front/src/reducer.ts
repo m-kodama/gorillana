@@ -1,16 +1,19 @@
+import { IStore } from './store';
+
 export enum ActionType {
-    "DIALOG_OPEN",
-    "DIALOG_CLOSE"
+    "DIALOG_UPDATE",
+    "STUDENT_UPDATE"
 }
 
-export type IAction = {
-    type: ActionType
+export interface IAction {
+    type: ActionType;
+    payload: IStore;
 };
 
-export const reducer = (state = {}, action: IAction) => {
+export const reducer: React.Reducer<IStore, IAction> = (state, action: IAction) => {
     switch(action.type) {
-        case ActionType.DIALOG_OPEN: return {...state, isShowDialog: true}
-        case ActionType.DIALOG_CLOSE: return {...state, isShowDialog: false}
+        case ActionType.DIALOG_UPDATE: return { ...state, isShowDialog: action.payload.isShowDialog }
+        case ActionType.STUDENT_UPDATE: return { ...state, students: action.payload.students }
         default: throw new Error("不正な状態です");
     }
 };
