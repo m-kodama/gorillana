@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 import org.mlab.gorillana.domain.Student
 import org.mlab.gorillana.service.StudentService
-import org.mlab.gorillana.common.HttpStatusCode
 
 @RestController
 @CrossOrigin
@@ -31,7 +30,7 @@ class StudentController() {
   // 1件作成
   @PostMapping("/students")
   @ResponseStatus(HttpStatus.CREATED)
-  fun createStudentById(@RequestBody student: Student): List<Student> {
+  fun createStudentById(@RequestBody student: Student): Student {
       return studentService.insertStudent(student)
   }
 
@@ -45,7 +44,8 @@ class StudentController() {
   // 1件削除
   @DeleteMapping("/students/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  fun deleteStudentById(@PathVariable("id") studentId: Int?): List<Student> {
-      return studentService.deleteStudentById(studentId)
+  fun deleteStudentById(@PathVariable("id") studentId: Int?) {
+    studentService.deleteStudentById(studentId)
+    return
   }
 }
