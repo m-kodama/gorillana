@@ -55,26 +55,26 @@ class StudentServiceImplTests {
   @Test
   fun 学生を追加() {
     val student = Student(0, "ABC", "テスト", "雄一", 1, 1, "2000")
-    val expectedValue = 4
-    val students: List<Student> = studentService.insertStudent(student)
-    val actualValue = students.count()
+    val expectedValue = student.studentNumber
+    val insertedStudent: Student = studentService.insertStudent(student)
+    val actualValue = insertedStudent.studentNumber
     assertEquals(expectedValue, actualValue)
   }
 
   @Test
   fun 学生ID2の学生の学籍番号を更新する() {
     val student = Student(2, "ABC", "小山田", "雄二", 2, 1, "2000")
-    val expectedValue  = "ABC"
-    val updatedStudent = studentService.updateStudent(2, student)
-    val actualValue = updatedStudent.studentNumber
+    val expectedValue  = student.studentNumber
+    val actualValue = studentService.updateStudent(2, student).studentNumber
     assertEquals(expectedValue, actualValue)
   }
 
   @Test
   fun 学生ID1の学生を削除する() {
-    val students = studentService.deleteStudentById(1)
-    val expectedValue  = 2
-    val actualValue = students.count()
+    val deleteStudentId = 1
+    studentService.deleteStudentById(deleteStudentId)
+    val expectedValue = null
+    val actualValue = studentService.getStudentById(deleteStudentId)
     assertEquals(expectedValue, actualValue)
   }
 }
