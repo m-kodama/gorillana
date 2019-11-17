@@ -1,5 +1,3 @@
-package org.mlab.gorillana.common
-
 enum class HttpStatusCode(val code: Int) {
   Continue(100),
   SwitchingProtocols(101),
