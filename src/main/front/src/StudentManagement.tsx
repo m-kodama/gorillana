@@ -12,7 +12,6 @@ import axios from 'axios';
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
 const StudentManagement = () => {
-    console.log("studentManagement");
     const { state, dispatch } = useContext(Store);
 
     useEffect(() => {
