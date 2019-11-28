@@ -28,15 +28,15 @@ const TableComponent: React.FC<StudentProps> = (props: StudentProps) => {
         setTargetStudent(row);
     }
 
-
     const deleteStudent = async () => {
         const targetStudentId = targetStudent.studentId;
         await axios.delete<StudentProperties[]>("http://localhost:8080/api/students/" + targetStudentId).then((response) => {
+        const updatedStudents = _.clone(state.students).filter(student => student.studentId !== targetStudentId);
              dispatch({
                  type: ActionType.STUDENT_UPDATE,
                  payload: {
                      ...state,
-                     students: response.data
+                     students: updatedStudents
                  }
              });
              setAnchorEl(null);

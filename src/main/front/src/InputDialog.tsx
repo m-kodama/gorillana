@@ -47,7 +47,7 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
         await axios.post<StudentProperties[]>("http://localhost:8080/api/students", editTargetStudent).then((response) => {
             dispatch({
                 type: ActionType.STUDENT_UPDATE, 
-                payload: {...state, students: response.data}
+                payload: {...state, students: _.concat(state.students, response.data)}
             });
         });
     }
@@ -55,8 +55,9 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
     const putStudent = async () => {
         const targetStudentId = editTargetStudent.studentId;
         await axios.put<StudentProperties[]>(`http://localhost:8080/api/students/${targetStudentId}`, editTargetStudent).then((response) => {
-            if(!_.isEmpty(response.data)) {
-                axios.get<StudentProperties[]>("http://localhost:8080/api/students").then((res) => {
+            if(_.isEmpty(response.data)) {
+                // TODO 本来であれば変更後の学生情報だけ飛んでくるはず...
+                axios.get<StudentProperties[]>('http://localhost:8080/api/students').then((res) => {
                     dispatch({
                         type: ActionType.STUDENT_UPDATE,
                         payload: {...state, students: res.data}
