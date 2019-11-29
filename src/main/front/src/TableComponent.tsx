@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { Store } from './store';
 import { ActionType } from './reducer';
-import { Table, TableHead, TableRow, TableCell, TableBody, Button, Paper, Tooltip, Popover, Typography } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableBody, Button, Paper, Tooltip, Popover, Typography, Snackbar } from '@material-ui/core';
 import { EditTwoTone, DeleteTwoTone, PersonAddTwoTone, InsertDriveFileTwoTone } from '@material-ui/icons';
-import { TrashCanOutline } from 'mdi-material-ui';
+import { TrashCanOutline, AccountPlus, FileMove } from 'mdi-material-ui';
 import { StudentProperties, defaultStudent } from './const';
 import InputDialog from './InputDialog';
 import axios from 'axios';
@@ -28,15 +28,15 @@ const TableComponent: React.FC<StudentProps> = (props: StudentProps) => {
         setTargetStudent(row);
     }
 
-
     const deleteStudent = async () => {
         const targetStudentId = targetStudent.studentId;
         await axios.delete<StudentProperties[]>("http://localhost:8080/api/students/" + targetStudentId).then((response) => {
+        const updatedStudents = _.clone(state.students).filter(student => student.studentId !== targetStudentId);
              dispatch({
                  type: ActionType.STUDENT_UPDATE,
                  payload: {
                      ...state,
-                     students: response.data
+                     students: updatedStudents
                  }
              });
              setAnchorEl(null);
@@ -44,7 +44,8 @@ const TableComponent: React.FC<StudentProps> = (props: StudentProps) => {
     }
 
     const showConfirmPopOver = () => {
-        return <Popover open={Boolean(anchorEl)} anchorEl={anchorEl} anchorOrigin={{
+        return (
+            <Popover open={Boolean(anchorEl)} anchorEl={anchorEl} anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'center',
             }}
@@ -61,13 +62,14 @@ const TableComponent: React.FC<StudentProps> = (props: StudentProps) => {
                     <Button size="small" onClick={() => setAnchorEl(null)}>キャンセル</Button>
                 </div>
             </Popover>
+        );
     }
 
     return (
         <div>
             <div style={{textAlign:"center", margin:"15px 0px"}}>
-                <Button style={{margin:"5px 5px"}} variant="outlined" color="secondary" startIcon={<PersonAddTwoTone/>} onClick={() => { setTargetStudent(defaultStudent);dispatch({type: ActionType.DIALOG_UPDATE, payload:{...state, isShowDialog: true}})}}>新規作成</Button>
-                <Button style={{margin:"5px 5px"}} variant="outlined" startIcon={<InsertDriveFileTwoTone/>}>CSVから新規作成</Button>
+                <Button style={{margin:"5px 5px", boxShadow:"none"}} variant="contained" color="secondary" startIcon={<AccountPlus/>} onClick={() => { setTargetStudent(defaultStudent);dispatch({type: ActionType.DIALOG_UPDATE, payload:{...state, isShowDialog: true}})}}>新規作成</Button>
+                <Button style={{margin:"5px 5px", backgroundColor:"#FFFFFF"}} variant="outlined" startIcon={<FileMove/>}>CSVから新規作成</Button>
             </div>
             <Paper style={{width:"90%", margin:"0 auto"}}>
                 { Boolean(anchorEl) && showConfirmPopOver() }

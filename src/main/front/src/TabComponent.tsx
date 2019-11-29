@@ -22,7 +22,7 @@ const TabComponent: React.FC = () => {
                     <Tooltip title="設定を変更する" enterDelay={tooltipEntryDelay}><Tab icon={<SettingsApplicationsTwoTone/>}/></Tooltip>
                 </Tabs>
                 </Grid>
-                <Grid style={{minHeight: "100vh"}} item xs>
+                <Grid style={{minHeight: "100vh", backgroundColor:"#FAFAFA"}} item xs>
             {
                 tabId === 1 && <StudentManagement/>
             }
