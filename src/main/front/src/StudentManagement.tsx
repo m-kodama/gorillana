@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Store } from './store';
 import { ActionType } from './reducer';
-import { StudentProperties, defaultStudent } from './const';
-import { Button } from '@material-ui/core';
-import { InsertDriveFileTwoTone, PersonAddTwoTone } from '@material-ui/icons';
+import { StudentProperties } from './const';
 import TableComponent from './TableComponent';
-import InputDialog from './InputDialog';
 import axios from 'axios';
 
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -14,6 +11,7 @@ axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded
 const StudentManagement = () => {
     const { state, dispatch } = useContext(Store);
 
+    // TODO この使い方はよろしくないらしい
     useEffect(() => {
         getStudents();
     },[]);
