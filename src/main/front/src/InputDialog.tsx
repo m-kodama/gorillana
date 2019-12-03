@@ -10,6 +10,8 @@ import { StudentProperties, defaultStudent } from './const';
 import { Alphabetical, Numeric } from 'mdi-material-ui'
 import _ from 'lodash';
 import axios from 'axios';
+import { Gorillana } from './messageResource';
+import moment from 'moment';
 
 type StudentProps = {
     children: StudentProperties
@@ -17,10 +19,11 @@ type StudentProps = {
 
 
 const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
+    const targetYearRange = [moment().subtract(1, 'year').year(), moment().year(), moment().add(1, 'year').year()];
     const { state, dispatch } = useContext(Store);
     const [editTargetStudent, setTargetStudent] = useState<StudentProperties>(props.children);
 
-    const dialogMode = (props.children.studentId > 0) ? "編集" : "新規作成";
+    const dialogMode = (props.children.studentId > 0) ? Gorillana.STUDENT.EDIT : Gorillana.STUDENT.CREATE;
 
     const handleTargetStudent = (event: React.ChangeEvent<{value: unknown}>, property: keyof StudentProperties) => {
         // 念のためコピーに対して更新を実施した後でstateに反映
@@ -37,7 +40,7 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
                 updateTargetStudent[property] = event.target.value as number ;
                 break;
             default: 
-                new Error("予期せぬエラー");
+                new Error(`${Gorillana.ERROR.UNEXPECTED}`);
                 break;
         }
         setTargetStudent(updateTargetStudent);
@@ -70,15 +73,15 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
     return (
         <div>
             <Dialog open={true}>
-                <DialogTitle>学生の{dialogMode}</DialogTitle>
+                <DialogTitle>{dialogMode}</DialogTitle>
                     <DialogContent>
                     <DialogContentText style={{width:400, padding:10}}>
-                        <TextField disabled={true} value={dialogMode === "編集" ? props.children.studentId : ""} placeholder={dialogMode === "新規作成" ? "自動で入力されます" : ""} style={{marginBottom:24, width:"100%"}} label="管理ID" variant="outlined" InputProps={{startAdornment:(<InputAdornment position="start"><Numeric color="action"/> : </InputAdornment>)}}/>
+                        <TextField disabled={true} value={dialogMode === Gorillana.STUDENT.EDIT ? props.children.studentId : ""} placeholder={dialogMode === Gorillana.STUDENT.CREATE ? Gorillana.COMMON.AUTO_INPUT : ""} style={{marginBottom:24, width:"100%"}} label={Gorillana.STUDENT.STUDENT_ID} variant="outlined" InputProps={{startAdornment:(<InputAdornment position="start"><Numeric color="action"/> : </InputAdornment>)}}/>
                         <TextField 
                             value={editTargetStudent.studentNumber} 
                             onChange={(e) => handleTargetStudent(e, "studentNumber")} 
                             style={{marginBottom:24, width:"100%"}} 
-                            label="学籍番号" 
+                            label={Gorillana.STUDENT.STUDENT_NUMBER} 
                             variant="outlined" 
                             InputProps={{startAdornment:(<InputAdornment position="start"><Alphabetical color="action"/> : </InputAdornment>)}}
                         />
@@ -86,7 +89,7 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
                             value={editTargetStudent.lastName} 
                             onChange={(e) => handleTargetStudent(e, "lastName")} 
                             style={{marginBottom:24, width:"100%"}} 
-                            label="姓" 
+                            label={Gorillana.STUDENT.LAST_NAME}
                             variant="outlined" 
                             InputProps={{startAdornment:(<InputAdornment position="start"><Alphabetical color="action"/> : </InputAdornment>)}}
                         />
@@ -94,26 +97,24 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
                             value={editTargetStudent.firstName} 
                             onChange={(e) => handleTargetStudent(e, "firstName")} 
                             style={{marginBottom:24, width:"100%"}} 
-                            label="名" 
+                            label={Gorillana.STUDENT.FIRST_NAME}
                             variant="outlined" 
                             InputProps={{startAdornment:(<InputAdornment position="start"><Alphabetical color="action"/> : </InputAdornment>)}}
                             />                        
                         <FormControl style={{marginBottom:24, width:"100%"}} variant="outlined">
-                            <InputLabel variant="outlined">学部</InputLabel>
+                            <InputLabel variant="outlined">{Gorillana.STUDENT.FACULITY_NAME}</InputLabel>
                                 <Select labelWidth={32} value={editTargetStudent.faculityId} onChange={(e) => handleTargetStudent(e, "faculityId")}>
-                                    <MenuItem value={0}>未選択</MenuItem>
+                                    <MenuItem value={0}>{Gorillana.COMMON.NOT_SELCET}</MenuItem>
                                     <MenuItem value={1}>工学①</MenuItem>
                                     <MenuItem value={2}>理学②</MenuItem>
                                     <MenuItem value={3}>文学⑨</MenuItem>
                                 </Select>
                         </FormControl>
                         <FormControl style={{marginBottom:24, width:"100%"}} variant="outlined">
-                            <InputLabel variant="outlined">入学年度</InputLabel>
+                            <InputLabel variant="outlined">{Gorillana.STUDENT.ENTRANCE_YEAR}</InputLabel>
                                 <Select labelWidth={64} value={editTargetStudent.entranceYear} onChange={(e) => handleTargetStudent(e, "entranceYear")}>
-                                    <MenuItem value={0}>未選択</MenuItem>
-                                    <MenuItem value={"2018"}>2018年度</MenuItem>
-                                    <MenuItem value={"2019"}>2019年度</MenuItem>
-                                    <MenuItem value={"2020"}>2020年度</MenuItem>
+                                    <MenuItem value={0}>{Gorillana.COMMON.NOT_SELCET}</MenuItem>
+                                    { targetYearRange.map(year => <MenuItem value={year.toString()}>{year + Gorillana.COMMON.FISCAL_YEAR}</MenuItem>) }
                                 </Select>
                         </FormControl>
                     </DialogContentText>
@@ -123,8 +124,8 @@ const InputDialog: React.FC<StudentProps> = (props: StudentProps) => {
                         dispatch({type: ActionType.DIALOG_UPDATE, payload:{...state, isShowDialog: false}})
                         setTargetStudent(defaultStudent);
                     }}
-                    >キャンセル</Button>
-                    <Button onClick={() => { dialogMode === "新規作成" ? postStudent() : putStudent(); dispatch({type: ActionType.DIALOG_UPDATE, payload:{...state, isShowDialog: false}})}} color="secondary">登録</Button>
+                    >{Gorillana.COMMON.CANCEL}</Button>
+                    <Button onClick={() => { dialogMode === Gorillana.STUDENT.CREATE ? postStudent() : putStudent(); dispatch({type: ActionType.DIALOG_UPDATE, payload:{...state, isShowDialog: false}})}} color="secondary">{Gorillana.STUDENT.CREATE}</Button>
                 </DialogActions>
             </Dialog>
         </div>
