@@ -1,0 +1,27 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:11-alpine
+    volumes:
+      - ./var/lib/postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - PGPASSWORD
+      - POSTGRES_DB
+      - DATABASE_HOST
+    ports:
+      - "5432:5432"
+
+  postgres_test:
+    image: postgres:11-alpine
+    volumes:
+      - ./var/lib/postgres_test/init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGPASSWORD=postgres
+      - POSTGRES_DB=gorillana_db
+      - DATABASE_HOST=localhost
+    ports:
+      - "5431:5432"
