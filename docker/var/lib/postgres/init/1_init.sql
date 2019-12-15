@@ -1,12 +1,13 @@
 DROP TABLE IF EXISTS students;
 
+-- 学生テーブル
 CREATE TABLE students (
   student_id SERIAL NOT NULL,
-  student_number VARCHAR(30) NOT NULL,
-  last_name VARCHAR(20) NOT NULL,
-  first_name VARCHAR(20) NOT NULL,
-  faculity_id INTEGER NOT NULL,
-  class_id INTEGER NOT NULL,
+  student_number VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50),
+  first_name VARCHAR(50),
+  faculity_id INTEGER,
+  class_id INTEGER,
   entrance_year CHAR(4) NOT NULL,
   PRIMARY KEY (student_id)
 );
