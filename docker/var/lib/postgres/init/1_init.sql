@@ -53,3 +53,19 @@ INSERT INTO classes (class_name, class_name_short, fiscal_year) VALUES
   ('法学部', '法', '2020'),
   ('経済学部', '経', '2020'),
   ('理学部', '理', '2020');
+
+-- 授業計画テーブル
+DROP TABLE IF EXISTS syllabus;
+
+CREATE TABLE syllabus (
+  syllabus_id SERIAL NOT NULL,
+  class_id INTEGER,
+  lesson_date DATE,
+  unit_id INTEGER,
+  day_of_week INTEGER,
+  lesson_number INTEGER NOT NULL,
+  class_hours_id INTEGER,
+  has_quiz BOOLEAN NOT NULL,
+  task_deadline TIMESTAMP,
+  PRIMARY KEY (syllabus_id)
+);
