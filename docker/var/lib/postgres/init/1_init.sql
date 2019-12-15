@@ -33,3 +33,23 @@ INSERT INTO faculities (faculity_name, faculity_name_short) VALUES
   ('法学部', '法'),
   ('経済学部', '経'),
   ('理学部', '理');
+
+-- クラステーブル
+DROP TABLE IF EXISTS classes;
+
+CREATE TABLE classes (
+  class_id SERIAL NOT NULL,
+  class_name VARCHAR(255) NOT NULL,
+  class_name_short VARCHAR(5),
+  fiscal_year CHAR(4) NOT NULL,
+  PRIMARY KEY (class_id)
+);
+
+INSERT INTO classes (class_name, class_name_short, fiscal_year) VALUES
+  ('文学部', '文', '2020'),
+  ('教育学部1組', '教1', '2020'),
+  ('教育学部6組', '教6', '2020'),
+  ('教育学部7組', '教7', '2020'),
+  ('法学部', '法', '2020'),
+  ('経済学部', '経', '2020'),
+  ('理学部', '理', '2020');
