@@ -80,3 +80,25 @@ CREATE TABLE class_hours (
   ending_time TIME,
   PRIMARY KEY (class_hours_id)
 );
+
+-- セクションテーブル
+DROP TABLE IF EXISTS sections;
+
+CREATE TABLE sections (
+  section_id SERIAL NOT NULL,
+  section_name VARCHAR(255) NOT NULL,
+  sort_key INTEGER NOT NULL,
+  PRIMARY KEY (section_id)
+);
+
+-- ユニットテーブル
+DROP TABLE IF EXISTS units;
+
+CREATE TABLE units (
+  unit_id SERIAL NOT NULL,
+  section_id INTEGER NOT NULL,
+  unit_name VARCHAR(255),
+  sort_key INTEGER NOT NULL,
+  description VARCHAR(255),
+  PRIMARY KEY (unit_id)
+);
