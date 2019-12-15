@@ -69,3 +69,14 @@ CREATE TABLE syllabus (
   task_deadline TIMESTAMP,
   PRIMARY KEY (syllabus_id)
 );
+
+-- 授業時間テーブル
+DROP TABLE IF EXISTS class_hours;
+
+CREATE TABLE class_hours (
+  class_hours_id SERIAL NOT NULL,
+  hour INTEGER NOT NULL,
+  beginning_time TIME,
+  ending_time TIME,
+  PRIMARY KEY (class_hours_id)
+);
