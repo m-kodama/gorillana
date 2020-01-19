@@ -1,14 +1,14 @@
 import * as React from 'react';
-import TabComponent from './TabComponent';
-import AppbarComponent from './AppbarComponent';
 import { StoreProvider } from './store';
+import SideMenu from './SideMenu';
 
 const App: React.FC = () => {
   return (
     <StoreProvider>
       <div>
-        <AppbarComponent/>
-        <TabComponent/>
+        <SideMenu/>
+        {/* <AppbarComponent/>
+        <TabComponent/> */}
       </div>
     </StoreProvider>
   );
