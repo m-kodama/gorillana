@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import _ from "lodash";
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { ChevronUp, ChevronDown } from "mdi-material-ui";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -58,7 +59,6 @@ const MenuButton: React.FC<wantedProps> = props => {
 
   const hasSubMenu = () => !_.isUndefined(props.children);
 
-  const hasChildren = !_.isUndefined(props.children);
   return (
     <div>
       {/* <Button onClick={onClick} className={classes.button} variant="outlined">
@@ -76,9 +76,9 @@ const MenuButton: React.FC<wantedProps> = props => {
             : classes.unselectedButton)
         }
       >
-        <div>Icon</div>
+        <div>{props.icon}</div>
         <div className={classes.buttonText}>{props.label}</div>
-        {hasSubMenu() && <div>Icon</div>}
+        {hasSubMenu() ? isSelected ? <ChevronUp/> : <ChevronDown/> : ""}
       </button>
       {hasSubMenu() && (
         <div className={classes.subMenuGroup}>

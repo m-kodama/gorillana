@@ -1,6 +1,6 @@
 import * as React from "react";
 import MenuButton from "./common/components/MenuButton";
-
+import { Home, AccountCircle } from 'mdi-material-ui';
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,10 +24,10 @@ const SideMenu: React.FC = () => {
   return (
     <div className={classes.sideMenu}>
       <div className={classes.sectionTitle}>メニュー</div>
-      <MenuButton label="ホーム" />
+      <MenuButton label="ホーム" icon={<Home/>} />
       <MenuButton label="分析" />
       <MenuButton label="学生管理">
-        <MenuButton label="学生" />
+      <MenuButton label="学生" icon={<AccountCircle/>} />
         <MenuButton label="成績" />
       </MenuButton>
       <MenuButton label="授業管理">
