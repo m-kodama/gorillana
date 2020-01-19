@@ -1,17 +1,42 @@
-import * as React from 'react';
-import MenuButton from './common/components/MenuButton';
+import * as React from "react";
+import MenuButton from "./common/components/MenuButton";
 
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    sideMenu: {
+      background: "#FFFFFF",
+      width: "256px",
+      padding: "16px"
+    },
+    sectionTitle: {
+      color: "#84898C",
+      fontSize: 12,
+      fontWeight: "bold",
+      padding: "0 8px 4px 8px"
+    }
+  })
+);
 
 const SideMenu: React.FC = () => {
-    return (
-      <div>
-        <MenuButton label="ほげ">
-          <MenuButton label="ふが" />
-          <MenuButton label="2" />
-          <MenuButton label="3" />
-        </MenuButton>
-      </div>
-    );
-}
+  const classes = useStyles();
+  return (
+    <div className={classes.sideMenu}>
+      <div className={classes.sectionTitle}>メニュー</div>
+      <MenuButton label="ホーム" />
+      <MenuButton label="分析" />
+      <MenuButton label="学生管理">
+        <MenuButton label="学生" />
+        <MenuButton label="成績" />
+      </MenuButton>
+      <MenuButton label="授業管理">
+        <MenuButton label="クラス" />
+        <MenuButton label="シラバス" />
+      </MenuButton>
+      <MenuButton label="設定" />
+    </div>
+  );
+};
 
 export default SideMenu;
