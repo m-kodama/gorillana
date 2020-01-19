@@ -1,42 +1,43 @@
 import * as React from 'react';
 import { Button } from '@material-ui/core';
 import _ from "lodash";
-
+import { ChevronDown, ChevronUp } from 'mdi-material-ui';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   button: {
-    background: "#FF5252",
+    background: "#0F4C81",
     textAlign: "left",
-    width: "500px",
+    width: 200,
     color: "#FFF",
   },
 }));
 
 type wantedProps = {
-  icon?: string;
+  icon?: JSX.Element;
   label: string;
   children?: React.ReactNode;
 }
 
 const MenuButton: React.FC<wantedProps> = (props) => {
   const classes = useStyles();
-  const [showChildren, changeShowState] = React.useState(false);
+  const [showChildren, changeState] = React.useState(false);
 
   const onClick = () => {
     if(_.isUndefined(props.children)) {
       alert("fuck");
     } else {
-      changeShowState(!showChildren);
+      changeState(!showChildren);
     }
   }
 
+  const hasChildren = !_.isUndefined(props.children);
   return (
     <div>
-      <Button  onClick={onClick} className={classes.button} variant="outlined">
-        {props.label}
+      <Button onClick={onClick} className={classes.button} variant="outlined" startIcon={props.icon} endIcon={ hasChildren ? showChildren ? <ChevronUp/> : <ChevronDown/> : ""}>
+        {/* <Typography align="left">{props.label}</Typography> */}{props.label}
       </Button>
-      {!_.isUndefined(props.children) && (
+      { hasChildren && (
         <div>{showChildren && props.children}</div>
       )}
     </div>
