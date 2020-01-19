@@ -1,19 +1,6 @@
 import * as React from "react";
 import { Button } from "@material-ui/core";
 import _ from "lodash";
-<<<<<<< HEAD
-import { ChevronDown, ChevronUp } from 'mdi-material-ui';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  button: {
-    background: "#0F4C81",
-    textAlign: "left",
-    width: 200,
-    color: "#FFF",
-  },
-}));
-=======
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
@@ -50,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
->>>>>>> b59177541d855db8a2b21f0ed2b9c397216a6ac1
 
 type wantedProps = {
   icon?: JSX.Element;
@@ -60,21 +46,13 @@ type wantedProps = {
 
 const MenuButton: React.FC<wantedProps> = props => {
   const classes = useStyles();
-<<<<<<< HEAD
-  const [showChildren, changeState] = React.useState(false);
-=======
   const [isSelected, changeSelectedState] = React.useState(false);
->>>>>>> b59177541d855db8a2b21f0ed2b9c397216a6ac1
 
   const onClick = () => {
     if (_.isUndefined(props.children)) {
       changeSelectedState(!isSelected);
     } else {
-<<<<<<< HEAD
-      changeState(!showChildren);
-=======
       changeSelectedState(!isSelected);
->>>>>>> b59177541d855db8a2b21f0ed2b9c397216a6ac1
     }
   };
 
@@ -83,13 +61,6 @@ const MenuButton: React.FC<wantedProps> = props => {
   const hasChildren = !_.isUndefined(props.children);
   return (
     <div>
-<<<<<<< HEAD
-      <Button onClick={onClick} className={classes.button} variant="outlined" startIcon={props.icon} endIcon={ hasChildren ? showChildren ? <ChevronUp/> : <ChevronDown/> : ""}>
-        {/* <Typography align="left">{props.label}</Typography> */}{props.label}
-      </Button>
-      { hasChildren && (
-        <div>{showChildren && props.children}</div>
-=======
       {/* <Button onClick={onClick} className={classes.button} variant="outlined">
         {props.label}
       </Button> */}
@@ -113,7 +84,6 @@ const MenuButton: React.FC<wantedProps> = props => {
         <div className={classes.subMenuGroup}>
           {isSelected && props.children}
         </div>
->>>>>>> b59177541d855db8a2b21f0ed2b9c397216a6ac1
       )}
     </div>
   );
