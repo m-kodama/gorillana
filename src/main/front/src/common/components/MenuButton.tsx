@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button } from "@material-ui/core";
 import _ from "lodash";
 
+import classnames from 'classnames';
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { ChevronUp, ChevronDown } from "mdi-material-ui";
 
@@ -17,11 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 16,
       borderRadius: "8px"
     },
-    unselectedButton: {
+    unselected: {
       background: "#FFFFFF",
       color: "#333333"
     },
-    selectedButton: {
+    selected: {
       background: "#0F4C81",
       color: "#FFFFFF"
     },
@@ -61,20 +62,9 @@ const MenuButton: React.FC<wantedProps> = props => {
 
   return (
     <div>
-      {/* <Button onClick={onClick} className={classes.button} variant="outlined">
-        {props.label}
-      </Button> */}
-      <button
-        onClick={onClick}
-        className={
-          classes.button +
-          " " +
-          (isSelected
-            ? hasSubMenu()
-              ? classes.selectedSubButton
-              : classes.selectedButton
-            : classes.unselectedButton)
-        }
+      <button 
+        onClick={onClick} 
+        className={classnames(classes.button, isSelected ? hasSubMenu() ? classes.selectedSubButton : classes.selected : classes.unselected)}
       >
         <div>{props.icon}</div>
         <div className={classes.buttonText}>{props.label}</div>
