@@ -22,8 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 8,
       transition: "padding-left 0.2s ease-out, background-color 0.2s ease-out",
       "&:hover": {
-        paddingLeft: 16
-      }
+        paddingLeft: 16,
+        cursor: "pointer",
+      },
+      "&:focus": {
+        outline: "none",
+      },
     },
     unselected: {
       background: "#FFFFFF",
