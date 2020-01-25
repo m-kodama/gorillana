@@ -10,18 +10,20 @@ type StoreWithAction = {
 export interface IStore {
     isShowDialog: boolean;
     students: StudentProperties[];
+    menuGroupValue: string;
 };
 
 export const initialStore: IStore = {
     isShowDialog: false,
-    students: []
+    students: [],
+    menuGroupValue: "HOME",
 };
 
 export const Store = React.createContext<StoreWithAction>({
     state: initialStore,
     dispatch: () => {}
 });
- 
+
 export const StoreProvider: React.FC<React.Props<{}>> = props => {
     const [state, dispatch] = React.useReducer(reducer, initialStore);
     return (
