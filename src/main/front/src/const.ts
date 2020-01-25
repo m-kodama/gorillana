@@ -1,3 +1,14 @@
+export const color = {
+    primary: "#0F4C81",
+    secondary: "#658DC6",
+    accent: "#658DC6",
+    baseCorn: "#F2D6AE",
+    baseBrown: "#A58D7F",
+    baseBlue: "#B5C7D3",
+    baseGrey: "#84898C",
+    text: "#333333",
+};
+
 export type StudentProperties = {
     studentId: number;
     studentNumber: string;
