@@ -1,40 +1,47 @@
 import * as React from "react";
 import MenuButton from "./common/components/MenuButton";
-import { Home, AccountCircle } from 'mdi-material-ui';
+import {
+  HomeOutline,
+  ChartBellCurveCumulative,
+  AccountMultipleOutline,
+  Calendar,
+  SettingsOutline,
+  CircleMedium,
+} from "mdi-material-ui";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import MenuButtonGroup from "./common/components/MenuButtonGroup";
+import { Store } from './store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     sideMenu: {
       background: "#FFFFFF",
-      width: "256px",
-      padding: "16px"
+      width: 256,
+      height: "100vh",
+      padding: 16,
+      overflow: "scroll"
     },
-    sectionTitle: {
-      color: "#84898C",
-      fontSize: 12,
-      fontWeight: "bold",
-      padding: "0 8px 4px 8px"
-    }
   })
 );
 
 const SideMenu: React.FC = () => {
+  const { state } = React.useContext(Store);
   const classes = useStyles();
   return (
     <div className={classes.sideMenu}>
-      <div className={classes.sectionTitle}>メニュー</div>
-      <MenuButton label="ホーム" icon={<Home/>} />
-      <MenuButton label="分析" />
-      <MenuButton label="学生管理">
-      <MenuButton label="学生" icon={<AccountCircle/>} />
-        <MenuButton label="成績" />
-      </MenuButton>
-      <MenuButton label="授業管理">
-        <MenuButton label="クラス" />
-        <MenuButton label="シラバス" />
-      </MenuButton>
-      <MenuButton label="設定" />
+      <MenuButtonGroup title="メニュー" value={state.menuGroupValue} >
+        <MenuButton label="ホーム" icon={<HomeOutline />} />
+        <MenuButton label="分析" icon={<ChartBellCurveCumulative />} />
+        <MenuButton label="学生管理" icon={<AccountMultipleOutline />}>
+          <MenuButton label="学生" icon={<CircleMedium />} />
+          <MenuButton label="成績" icon={<CircleMedium />} />
+        </MenuButton>
+        <MenuButton label="授業管理" icon={<Calendar />}>
+          <MenuButton label="クラス" icon={<CircleMedium />} />
+          <MenuButton label="シラバス" icon={<CircleMedium />} />
+        </MenuButton>
+        <MenuButton label="設定" icon={<SettingsOutline />} />
+      </MenuButtonGroup>
     </div>
   );
 };
