@@ -1,14 +1,15 @@
 import * as React from "react";
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { MenuButtonProps } from './MenuButton';
+import { color } from '../../const';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     sectionTitle: {
-      color: "#84898C",
+      color: color.baseGrey,
       fontSize: 12,
       fontWeight: "bold",
-      padding: "0 8px 4px 8px"
+      padding: "4px 8px 8px 8px"
     },
     menuButton: {
       marginBottom: 4
@@ -24,7 +25,7 @@ type MenuButtonGroupProps = {
 
 const MenuButtonGroup: React.FC<MenuButtonGroupProps> = props => {
   const classes = useStyles();
-  const [buttonState, changeButtonState] = React.useState<string>("HOME");
+  const [buttonState, changeButtonState] = React.useState<string>("ホーム");
   
   const onClickButton = (label: string) => {
     changeButtonState(label);
