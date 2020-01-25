@@ -1,5 +1,5 @@
 import * as React from "react";
-import MenuButton from "./common/components/MenuButton";
+import MenuButton from "../../common/components/MenuButton";
 import {
   HomeOutline,
   ChartBellCurveCumulative,
@@ -9,8 +9,11 @@ import {
   CircleMedium,
 } from "mdi-material-ui";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import MenuButtonGroup from "./common/components/MenuButtonGroup";
-import { Store } from './store';
+import MenuButtonGroup from "../../common/components/MenuButtonGroup";
+import { Store } from '../../store';
+import YearSelectDropdown from "./YearSelectDropdown";
+import UserCard from "./UserCard";
+import Logo from "../../common/components/Logo";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +32,10 @@ const SideMenu: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.sideMenu}>
-      <MenuButtonGroup title="メニュー" value={state.menuGroupValue} >
+      <Logo />
+      <UserCard userName="ケレン・ヘラー" mail="super_woman@sample.com"/>
+      <YearSelectDropdown />
+      <MenuButtonGroup title="メニュー" value={state.menuGroupValue}>
         <MenuButton label="ホーム" icon={<HomeOutline />} />
         <MenuButton label="分析" icon={<ChartBellCurveCumulative />} />
         <MenuButton label="学生管理" icon={<AccountMultipleOutline />}>

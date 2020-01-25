@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StoreProvider } from "./store";
-import SideMenu from "./SideMenu";
+import SideMenu from "./sidebar/components/SideMenu";
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
