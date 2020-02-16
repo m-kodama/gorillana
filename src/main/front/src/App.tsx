@@ -1,15 +1,16 @@
 import * as React from "react";
 import { StoreProvider } from "./store";
 import SideMenu from "./sidebar/components/SideMenu";
+import TopSummary from './summary/components/TopSummary'
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    app: {
+    sidebar: {
       background: "#EEEEEE",
       display: "flex",
-      minHeight: "100vh"
+      minHeight: "100vh",
     }
   })
 );
@@ -17,13 +18,16 @@ const useStyles = makeStyles((theme: Theme) =>
 const App: React.FC = () => {
   const classes = useStyles();
   return (
-    <StoreProvider>
-      <div className={classes.app}>
-        <SideMenu />
-        {/* <AppbarComponent/>
-        <TabComponent/> */}
-      </div>
-    </StoreProvider>
+    <div style={{display:"flex"}}>
+      <StoreProvider>
+        <div className={classes.sidebar}>
+          <SideMenu />
+        </div>
+        <div style={{width:"calc(100% - 256px)", background:"#E6E6E6"}}>
+          <TopSummary/>
+        </div>
+      </StoreProvider>
+    </div>
   );
 };
 
