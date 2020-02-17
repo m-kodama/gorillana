@@ -2,7 +2,8 @@ import * as React from 'react';
 import { makeStyles, withStyles, createStyles, Theme, IconButton } from '@material-ui/core';
 import {
   Paper,
-  Divider
+  Divider,
+  Typography
 } from '@material-ui/core';
 import {
   ToggleButtonGroup,
@@ -10,9 +11,7 @@ import {
 } from '@material-ui/lab'
 import {
   Settings,
-  CalendarMonth,
-  CalendarWeek,
-  CalendarToday
+  Account
 } from 'mdi-material-ui';
 import _ from 'lodash';
 
@@ -83,13 +82,13 @@ const SummaryBase: React.FC<propsType> = (props: propsType) => {
   const [faculity, setFaculity] = React.useState(["文"])
   const handleRange = (event: React.MouseEvent<HTMLElement>, newRange: string) => {
     if(!_.isNil(newRange)) {
-      // 必ず１つは選択状態にさせておく
+      // 必ず1つは選択状態にさせておく
       setRange(newRange);
     }
   }
   const handleFaculity = (event: React.MouseEvent<HTMLElement>, newFaculity: string[]) => {
     if(!_.isEmpty(newFaculity)) {
-      // 必ず１つは選択状態にさせておく
+      // 必ず1つは選択状態にさせておく
       setFaculity(newFaculity);
     }
   }
@@ -118,7 +117,28 @@ const SummaryBase: React.FC<propsType> = (props: propsType) => {
             </Paper>
             <IconButton><Settings className={classes.icon}/></IconButton>
           </div>
-          <div style={{display:"flex", margin:15, flexWrap:"wrap"}}>
+          <div style={{display:"flex", flexWrap:"wrap"}}>
+            <Paper style={{width: "calc(100%/3 - 100px)", margin: '16px 16px 16px 0px', padding: 15, boxShadow: "none", border:"1px solid #DEDEDE", borderRadius:8}}>
+              <Typography align="center" style={{color:"#333", marginBottom:5}}><Account style={{color:"#333"}}/>今週の学習者数</Typography>
+              <div style={{display:"flex", alignItems:"baseline", justifyContent:"center"}}>
+              <Typography align="center" variant="h2" style={{color:"#F5B895", fontWeight:"bold"}}>200</Typography>
+              <Typography align="center" style={{color:"#F5B895", fontWeight:"bold"}}>人</Typography>
+              </div>
+            </Paper>
+            <Paper style={{width: "calc(100%/3 - 100px)", margin: '16px 16px 16px 0px', padding: 15, boxShadow: "none", border:"1px solid #DEDEDE", borderRadius:8}}>
+              <Typography align="center" style={{color:"#333", marginBottom:5}}><Account style={{color:"#333"}}/>平均学習時間</Typography>
+              <div style={{display:"flex", alignItems:"baseline", justifyContent:"center"}}>
+              <Typography align="center" variant="h2" style={{color:"#F5B895", fontWeight:"bold"}}>2.5</Typography>
+              <Typography align="center" style={{color:"#F5B895", fontWeight:"bold"}}>分</Typography>
+              </div>
+            </Paper>
+            <Paper style={{width: "calc(100%/3 - 100px)", margin: '16px 16px 16px 0px', padding: 15, boxShadow: "none", border:"1px solid #DEDEDE", borderRadius:8}}>
+              <Typography align="center" style={{color:"#333", marginBottom:5}}><Account style={{color:"#333"}}/>平均正解数</Typography>
+              <div style={{display:"flex", alignItems:"baseline", justifyContent:"center"}}>
+              <Typography align="center" variant="h2" style={{color:"#F5B895", fontWeight:"bold"}}>8.2</Typography>
+              <Typography align="center" style={{color:"#F5B895", fontWeight:"bold"}}>回</Typography>
+              </div>
+            </Paper>
           </div>
         </Paper>
     );
