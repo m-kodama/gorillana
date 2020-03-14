@@ -15,7 +15,7 @@ const TopSummary: React.FC = () => {
             <StoreProvider>
                 <Paper style={{margin:16, height: "calc(100% / 3)"}}>
                     <SummaryHeader canSelectFaculity/>
-                    <div style={{padding:16}}>
+                    <div style={{padding:"0 16px 16px 16px"}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={4} lg={3} xl={2}><SummaryItem label="平均学習時間" value={0.4} category="time" unit="minute"/></Grid>
                             <Grid item xs={12} sm={6} md={4} lg={3} xl={2}><SummaryItem label="平均学習者数" value={0} category="people" unit="people"/></Grid>
