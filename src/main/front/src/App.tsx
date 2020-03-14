@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StoreProvider } from "./store";
 import SideMenu from "./sidebar/components/SideMenu";
-import TopSummary from './summary/components/TopSummary'
+import TopSummary from './summary/components/TopSummary';
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
