@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type MenuButtonGroupProps = {
-  title: String;
+  title?: String;
   value: string;
   children?: React.ReactNode;
 };
@@ -43,7 +43,7 @@ const MenuButtonGroup: React.FC<MenuButtonGroupProps> = props => {
 
   return (
     <div>
-      <div className={classes.sectionTitle}>メニュー</div>
+      { props.title && <div className={classes.sectionTitle}>{props.title}</div>}
       {
         children.map(child => {
           return (
